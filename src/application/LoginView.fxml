@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.LoginController">
+   <children>
+      <HBox minHeight="-Infinity" minWidth="-Infinity">
+         <children>
+            <Label minHeight="-Infinity" minWidth="-Infinity" text="Username:">
+               <HBox.margin>
+                  <Insets right="5.0" top="2.0" />
+               </HBox.margin>
+            </Label>
+            <TextField fx:id="usernameTextField">
+               <HBox.margin>
+                  <Insets left="5.0" />
+               </HBox.margin>
+            </TextField>
+         </children>
+         <VBox.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox minHeight="-Infinity" minWidth="-Infinity">
+         <children>
+            <Label minHeight="-Infinity" minWidth="-Infinity" text="Password:">
+               <HBox.margin>
+                  <Insets right="5.0" top="2.0" />
+               </HBox.margin>
+            </Label>
+            <PasswordField fx:id="passwordField">
+               <HBox.margin>
+                  <Insets left="5.0" />
+               </HBox.margin>
+            </PasswordField>
+         </children>
+         <VBox.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </VBox.margin>
+      </HBox>
+      <Button mnemonicParsing="false" onAction="#logInButton" text="Log in">
+         <VBox.margin>
+            <Insets bottom="10.0" left="10.0" top="10.0" />
+         </VBox.margin>
+      </Button>
+      <HBox minHeight="-Infinity" minWidth="-Infinity">
+         <children>
+            <Label minHeight="-Infinity" minWidth="-Infinity" text="Don't have an account?">
+               <padding>
+                  <Insets top="3.0" />
+               </padding>
+            </Label>
+            <Hyperlink fx:id="signUpHyperLink" minHeight="-Infinity" minWidth="-Infinity" onAction="#signUpHyperLink" text="Sign up" />
+         </children>
+         <VBox.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </VBox.margin>
+      </HBox>
+   </children>
+</VBox>
