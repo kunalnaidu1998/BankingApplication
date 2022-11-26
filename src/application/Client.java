@@ -9,28 +9,28 @@ public class Client {
 	private String password = "";
 
 	public String getFirstName() {
-		return firstName;
+		return new String(firstName);
 	}
 	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+		this.firstName = new String(firstName);
 	}
 	public String getLastName() {
-		return lastName;
+		return new String(lastName);
 	}
 	public void setLastName(String lastName) {
-		this.lastName = lastName;
+		this.lastName = new String(lastName);
 	}
 	public String getUsername() {
-		return username;
+		return new String(username);
 	}
 	public void setUsername(String username) {
-		this.username = username;
+		this.username = new String(username);
 	}
 	public String getPassword() {
-		return password;
+		return new String(password);
 	}
 	public void setPassword(String password) {
-		this.password = password;
+		this.password = new String(password);
 	}
 	
 	public Client(String firstName, String lastName, String username, String password) {
@@ -38,5 +38,6 @@ public class Client {
 		setLastName(lastName);
 		setUsername(username);
 		setPassword(password);
+
 	}
 }
