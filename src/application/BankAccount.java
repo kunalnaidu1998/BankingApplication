@@ -1,12 +1,11 @@
 package application;
 
-public class BankAccount extends Client {
+public class BankAccount {
 
 	private Double balance = 0.0;
 
-	public BankAccount(String firstName, String lastName, String username, String password) {
-		super(firstName, lastName, username, password);
-		
+	public BankAccount(Double startBalance){
+		setBalance(startBalance);
 	}
 	
 	public Double getBalance() {

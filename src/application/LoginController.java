@@ -39,6 +39,13 @@ public class LoginController{
     	return new  HashMap<String, Client>(clientData);
     }
     
+    /**
+     * adds a client to the list of clients
+     * 
+     * @param username : username of the new client
+     * @param newClient : client object of the new client
+     * @return
+     */
     protected Map<String, Client> addClient(String username, Client newClient){
     	Map<String, Client> newClientData =  getClientData();
     	newClientData.put(username, newClient);
@@ -47,13 +54,14 @@ public class LoginController{
 
     @FXML
     /**
-     * 
+     * on log in button press log into client account
      * @param event
      */
     void logInButton(ActionEvent event) {
     	String user = usernameTextField.getText();
     	String password = passwordField.getText();
     	
+    	// check if user exist and password is correct
     	if (clientData.containsKey(user)) {
     		if (clientData.get(user).getPassword() == password) {
  
@@ -72,7 +80,8 @@ public class LoginController{
 
     @FXML
     /**
-     * 
+     * sets up sign up screen on button press
+     *  
      * @param event
      */
     void signUpHyperLink(ActionEvent event) {

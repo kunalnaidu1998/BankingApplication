@@ -25,12 +25,18 @@ public class SignUpController extends LoginController {
     private Label signUpErrorLabel;
 
     @FXML
+    /**
+     *  on button press creates new user
+     * @param event
+     */
     void SignUpButton(ActionEvent event) {
+    	// get information from sign up
     	String firstName = newFirstNameTextField.getText();
     	String lastName = newLastNameTextField.getText();
     	String username = newUsernameTextField.getText();
     	String password = newPasswordTextField.getText();
     	
+    	// creates new user and checks if user already exists
     	Map<String, Client> clientData = super.getClientData();
     	if (!clientData.containsKey(username)) {
     		Client tempClient = new Client(firstName, lastName, username, password);
