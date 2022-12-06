@@ -12,6 +12,37 @@ public class Client {
 	private CheckingAccount checkingAccounts;
 
 	/**
+	 * gets a copy of checking account
+	 * @return instance of checking account
+	 */
+	public CheckingAccount getCheckingAccounts() {
+		return new CheckingAccount(checkingAccounts);
+	}
+	
+	/**
+	 * set checking account
+	 * @param checkingAccounts
+	 */
+	public void setCheckingAccounts(CheckingAccount checkingAccounts) {
+		this.checkingAccounts = new CheckingAccount(checkingAccounts);
+	}
+	/**
+	 * gets instance of savings acccount
+	 * @return instance of savings account
+	 */
+	public SavingsAccount getSavingsAccount() {
+		return new SavingsAccount(savingsAccount);
+	}
+
+	/**
+	 * sets saving account
+	 * @param savingsAccount
+	 */
+	public void setSavingsAccount(SavingsAccount savingsAccount) {
+		this.savingsAccount = new SavingsAccount(savingsAccount);
+	}
+
+	/**
 	 * gets first name of client
 	 * @return first name as a string
 	 */
@@ -81,8 +112,22 @@ public class Client {
 		setLastName(lastName);
 		setUsername(username);
 		setPassword(password);
-		// create savings account
-		checkingAccounts = new CheckingAccount(0.0);
+
+		// create checking and savings account account
+		setCheckingAccounts(new CheckingAccount(0.0));
+		setSavingsAccount(new SavingsAccount(0.0));
 		
 	}
+	
+	public Client(Client toCopy) {
+		setFirstName(toCopy.getFirstName());
+		setLastName(toCopy.getLastName());
+		setUsername(toCopy.getUsername());
+		setPassword(toCopy.getPassword());
+
+		// create checking and savings account account
+		setCheckingAccounts(toCopy.getCheckingAccounts());
+		setSavingsAccount(toCopy.getSavingsAccount());
+	}
+
 }

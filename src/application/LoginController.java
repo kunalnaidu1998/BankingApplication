@@ -3,11 +3,11 @@ package application;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Map;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
@@ -20,9 +20,8 @@ public class LoginController{
 
 	Stage applicationStage;
 	
-	private Map<String, Client> clientData = new HashMap<String, Client>();
+	private HashMap<String, Client> clientData = new HashMap<String, Client>();
 	
-
     @FXML
     private PasswordField passwordField;
 
@@ -35,22 +34,25 @@ public class LoginController{
     @FXML
     private Label errorLabel;
     
-    protected Map<String, Client> getClientData(){
-    	return new  HashMap<String, Client>(clientData);
+    /**
+     * gets client data
+     * @return
+     */
+    public HashMap<String, Client> getClientData(){
+    	HashMap<String, Client> clientDataCopy = new HashMap<String, Client>(clientData);
+    	return clientDataCopy;
     }
     
     /**
-     * adds a client to the list of clients
-     * 
-     * @param username : username of the new client
-     * @param newClient : client object of the new client
-     * @return
+     * sets client data
+     * @param newClientData
      */
-    protected Map<String, Client> addClient(String username, Client newClient){
-    	Map<String, Client> newClientData =  getClientData();
-    	newClientData.put(username, newClient);
-    	return newClientData;
+    public void setClientData(HashMap<String, Client> newClientData){
+    	HashMap<String, Client> clientDataCopy = new HashMap<String, Client>(newClientData);
+    	clientData = clientDataCopy;
     }
+    
+
 
     @FXML
     /**
@@ -60,11 +62,28 @@ public class LoginController{
     void logInButton(ActionEvent event) {
     	String user = usernameTextField.getText();
     	String password = passwordField.getText();
-    	
+
     	// check if user exist and password is correct
-    	if (clientData.containsKey(user)) {
-    		if (clientData.get(user).getPassword() == password) {
- 
+    	if (getClientData().containsKey(user)) {
+    		if (getClientData().get(user).getPassword().equals(password)) {
+    			
+    			try {
+    				
+    				FXMLLoader loader = new FXMLLoader();
+    				
+    				VBox root = loader.load(new FileInputStream("src/application/AccountView.fxml"));
+    				AccountController accountController = loader.getController();
+    				accountController.setUser(clientData.get(user));
+    				accountController.initialize_screen();
+
+    				applicationStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+    				Scene AccountScene = new Scene(root, 400, 400);
+    				applicationStage.setScene(AccountScene);
+    				applicationStage.setTitle("Banking Application - Account");
+    				
+    			} catch (IOException e) {
+    				e.printStackTrace();
+    			} 
     		} else {
     			String error = "Incorrect Password";
     			errorLabel.setText(error);
@@ -88,11 +107,17 @@ public class LoginController{
     	
 		try {
 			
+			
 			FXMLLoader loader = new FXMLLoader();
 			VBox root = loader.load(new FileInputStream("src/application/SignUpView.fxml"));
+			
+			SignUpController signUpController = loader.getController();
+			signUpController.setClientData(getClientData());
+
+			applicationStage = (Stage)((Node)event.getSource()).getScene().getWindow();
 			Scene signUpScene = new Scene(root, 400, 400);
 			applicationStage.setScene(signUpScene);
-			applicationStage.setTitle("Banking Application - Sign up");
+			applicationStage.setTitle("Banking Application - SignUp");
 			
 		} catch (IOException e) {
 			e.printStackTrace();
