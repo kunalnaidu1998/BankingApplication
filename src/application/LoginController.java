@@ -36,6 +36,11 @@ public class LoginController{
     
     /**
      * gets client data
+     * 
+     * Learned how to create dictionarys from
+     * 
+     * https://stackoverflow.com/questions/13543457/how-do-you-create-a-dictionary-in-java
+     * 
      * @return
      */
     public HashMap<String, Client> getClientData(){
@@ -45,7 +50,7 @@ public class LoginController{
     
     /**
      * sets client data
-     * @param newClientData
+     * @param newClientData : clientData dictionary
      */
     public void setClientData(HashMap<String, Client> newClientData){
     	HashMap<String, Client> clientDataCopy = new HashMap<String, Client>(newClientData);
@@ -60,6 +65,7 @@ public class LoginController{
      * @param event
      */
     void logInButton(ActionEvent event) {
+    	
     	String user = usernameTextField.getText();
     	String password = passwordField.getText();
 
@@ -67,6 +73,7 @@ public class LoginController{
     	if (getClientData().containsKey(user)) {
     		if (getClientData().get(user).getPassword().equals(password)) {
     			
+    			// change to account view 
     			try {
     				
     				FXMLLoader loader = new FXMLLoader();
@@ -105,6 +112,7 @@ public class LoginController{
      */
     void signUpHyperLink(ActionEvent event) {
     	
+    	// show sign up view
 		try {
 			
 			

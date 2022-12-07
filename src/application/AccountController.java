@@ -31,9 +31,14 @@ public class AccountController {
 	private Label savingsBalanceLabel;
 
     @FXML
-    private Label nameTextField;
+    private Label nameLabel;
 
     @FXML
+    /**
+     * on click of withdraw set up withdraw VBox
+     * 
+     * @param event : on menu select
+     */
     void withdrawMenuItem(ActionEvent event) {
     	
     	transactionVBox.getChildren().clear();
@@ -78,7 +83,9 @@ public class AccountController {
     	// set button action
     	commitWithdraw.setOnAction(commitEvent -> {
 			try {
+				// reset error label
 				invalidWithdrawLabel.setText("");
+
 				withdrawDepositAction("Withdraw" , chooseAccountChoiceBox.getValue(), amountTextfield.getText());
 			} catch (NumberFormatException e) {
 				invalidWithdrawLabel.setText("Invalid Amount Entered");
@@ -97,11 +104,16 @@ public class AccountController {
     
 
     @FXML
-    void DepositMenuItem(ActionEvent event) {
+    /**
+     * on click of deposit set up deposit VBox
+     * 
+     * @param event : on menu select
+     */
+    void depositMenuItem(ActionEvent event) {
     	
     	transactionVBox.getChildren().clear();
     	
-    	// setup withdraw 
+    	// setup deposit
     	HBox chooseAccountHBox = new HBox();
     	chooseAccountHBox.setPadding(new Insets(10,10,10,10));
     	
@@ -141,7 +153,9 @@ public class AccountController {
     	// set button action
     	commitDeposit.setOnAction(commitEvent -> {
 			try {
+				// reset error label
 				invalidDepositLabel.setText("");
+				
 				withdrawDepositAction("Deposit" , chooseAccountChoiceBox.getValue(), amountTextfield.getText());
 			} catch (NumberFormatException e) {
 				invalidDepositLabel.setText("Invalid Amount Entered");
@@ -158,9 +172,16 @@ public class AccountController {
     }
 
     @FXML
-    void TransferMenuItem(ActionEvent event) {
+    /**
+     * 
+     *  on click of deposit set up deposit VBox
+     *  
+     * @param event : on menu select
+     */
+    void transferMenuItem(ActionEvent event) {
     	transactionVBox.getChildren().clear();
     	
+    	// setup transfer 
     	HBox accountChoosingHbox = new HBox();
     	accountChoosingHbox.setPadding(new Insets(10,10,10,10));
     	
@@ -204,8 +225,10 @@ public class AccountController {
     	
     	transactionVBox.getChildren().addAll(accountChoosingHbox, amountHBox, buttonVBox);
     	
+    	
     	transferButton.setOnAction(commitEvent -> {
 			try {
+				// reset error label
 				transferErrorLabel.setText("");
 				transferAction(fromAccountChoiceBox.getValue(), toAccountChoiceBox.getValue(), amountTextfield.getText());
 			} catch (NumberFormatException e) {
@@ -221,12 +244,28 @@ public class AccountController {
 		});
 
     }
+    
+    /**
+     * 
+     * transfer money from one account to another account
+     * 
+     * @param fromAccount : account to transfer from
+     * @param toAccount : account to transfer to
+     * @param amount : amount to be transfered
+     * @throws NumberFormatException : makes sure format of number is correct
+     * @throws NullPointerException : makes sure input isnt empty
+     * @throws InvalidBalanceException : makes sure balance are valid
+     */
     public void transferAction(String fromAccount, String toAccount, String amount) throws NumberFormatException, NullPointerException, InvalidBalanceException {
+    	
+    	// transfer from checking account to savings account
     	if (fromAccount.equals("Checking Account")) {
     		if(toAccount.equals("Savings Account")) {
     			withdrawDepositAction("Withdraw", fromAccount, amount);
     			withdrawDepositAction("Deposit", toAccount, amount);
     		}
+ 
+    	// transfer from savings account to checking account
     	} else if (fromAccount.equals("Savings Account")) {
     		if (toAccount.equals("Checking Account")) {
     			withdrawDepositAction("Withdraw", fromAccount, amount);
@@ -235,31 +274,67 @@ public class AccountController {
     	}
     }
     
+    /**
+     * 
+     * sets the user
+     * 
+     * @param currentUser : user to be set
+     */
     public void setUser(Client currentUser) {
     	user = new Client(currentUser);
     }
 
+    /**
+     * 
+     * gets user
+     * 
+     * @return current client
+     * 
+     */
 	public Client getUser() {
 		return new Client(user);
 	}
 	
+	/**
+	 * start of Account View setup
+	 */
 	public void initialize_screen() {
-		nameTextField.setText(getUser().getFirstName());
+		
+		// setup Hello phrase
+		nameLabel.setText(getUser().getFirstName());
+		
+		// set up balance values
 		minimumSavingsBalance.setText("$" + String.valueOf(getUser().getSavingsAccount().getMinimumBalance()));
 		updateCheckingBalance();
 		updateSavingsBalance();
 		
 	}
 	
+	/**
+	 * updates checking balance on account view
+	 */
 	public void updateCheckingBalance() {
 		checkingBalanceLabel.setText("$" + getUser().getCheckingAccount().getBalance());
 	}
 	
+	/**
+	 * updates savings balance on account view
+	 */
 	public void updateSavingsBalance() {
 		savingsBalanceLabel.setText("$" + getUser().getSavingsAccount().getBalance());
 	}
 	
-	
+	/**
+	 * 
+	 * withdraw or deposit a certain amount of money from clients checking and savings account
+	 * 
+	 * @param transactionType : either of withdraw or deposit
+	 * @param account : Savings account or Checking Account
+	 * @param amount : amount to be withdrawn or deposited
+	 * @throws NullPointerException : makes sure empty string isnt inputted
+	 * @throws NumberFormatException : makes sure that the number is formatted correctly
+	 * @throws InvalidBalanceException : makes sure that balance is valid
+	 */
     public void withdrawDepositAction(String transactionType, String account, String amount) throws NullPointerException, NumberFormatException, InvalidBalanceException {
     	// check if value is correct input
     	

@@ -55,6 +55,7 @@ public class SignUpController{
     		Client tempClient = new Client(firstName, lastName, username, password);
     		addClient(username, tempClient);
         	
+    		// go back to log in view
     		try {
     			
     			FXMLLoader loader = new FXMLLoader();
@@ -81,7 +82,7 @@ public class SignUpController{
     /**
      * sets Client Data
      * 
-     * @param newClientData
+     * @param newClientData : client list
      */
     public void setClientData(HashMap<String, Client> newClientData){
     	HashMap<String, Client> clientDataCopy = new HashMap<String, Client>(newClientData);
@@ -90,7 +91,7 @@ public class SignUpController{
     
     /**
      * returns client data
-     * @return
+     * @return : client list
      */
     public HashMap<String, Client> getClientData(){
     	return new HashMap<String, Client>(clientData);

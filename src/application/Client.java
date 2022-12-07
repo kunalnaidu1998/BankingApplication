@@ -106,7 +106,14 @@ public class Client {
 		this.password = new String(password);
 	}
 	
-	
+	/**
+	 * Initialize Client
+	 * 
+	 * @param firstName : first name of client
+	 * @param lastName : last name of client
+	 * @param username : username of client
+	 * @param password : password of client
+	 */
 	public Client(String firstName, String lastName, String username, String password) {
 		setFirstName(firstName);
 		setLastName(lastName);
@@ -118,7 +125,10 @@ public class Client {
 		setSavingsAccount(new SavingsAccount(0.0));
 		
 	}
-	
+	/**
+	 * Creates copy of Client
+	 * @param toCopy : client to copy
+	 */
 	public Client(Client toCopy) {
 		setFirstName(toCopy.getFirstName());
 		setLastName(toCopy.getLastName());
@@ -130,23 +140,42 @@ public class Client {
 		setSavingsAccount(toCopy.getSavingsAccount());
 	}
 	
+	/**
+	 * deposits amount to clients checking account
+	 * @param amount : amount to deposit
+	 */
 	public void depositCheckingAccount(Double amount) {
 		CheckingAccount account = getCheckingAccount();
 		account.deposit(amount);
 		setCheckingAccount(account);
 	}
 	
+	/**
+	 * withdraws money from clients checking account
+	 * @param amount : amount of money to be withdrawn
+	 * @throws InvalidBalanceException : makes sure balance is valid after withdraw
+	 */
 	public void withdrawCheckingAccount(Double amount) throws InvalidBalanceException {
 		CheckingAccount account = getCheckingAccount();
 		account.withdraw(amount);
 		setCheckingAccount(account);
 	}
+	
+	/**
+	 * deposits money to clients savings account
+	 * @param amount : amount of money to be deposited
+	 */
 	public void depositSavingsAccount(Double amount) {
 		SavingsAccount account = getSavingsAccount();
 		account.deposit(amount);
 		setSavingsAccount(account);
 	}
 	
+	/**
+	 * withdraws money from clients saving account
+	 * @param amount : amount of money to be withdrawn
+	 * @throws InvalidBalanceException : makes sure balance is valid after withdraw
+	 */
 	public void withdrawSavingsAccount(Double amount) throws InvalidBalanceException {
 		SavingsAccount account = getSavingsAccount();
 		account.withdraw(amount);
