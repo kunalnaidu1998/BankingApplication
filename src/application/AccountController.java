@@ -41,6 +41,12 @@ public class AccountController {
      */
     void withdrawMenuItem(ActionEvent event) {
     	
+    	/*
+    	 * how i learned to remove everything in a VBox
+    	 * 
+    	 * https://stackoverflow.com/questions/28925381/is-there-a-way-to-remove-all-the-contents-in-vbox-in-javafx
+    	 * 
+    	 */
     	transactionVBox.getChildren().clear();
     	
     	// setup withdraw 

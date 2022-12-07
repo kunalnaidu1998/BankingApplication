@@ -114,7 +114,15 @@ public class LoginController{
     	
     	// show sign up view
 		try {
-			
+			/*
+			 * How I learned how to communicate between controllers
+			 *  
+			 * https://www.youtube.com/watch?v=wxhGKR3PQpo&list=PLZPZq0r_RZOM-8vJA3NQFZB7JroDcMwev&index=9
+			 * 
+			 * How to switch scenes with fxml files
+			 * 
+			 * https://www.youtube.com/watch?v=hcM-R-YOKkQ&list=PLZPZq0r_RZOM-8vJA3NQFZB7JroDcMwev&index=9
+			 */
 			
 			FXMLLoader loader = new FXMLLoader();
 			VBox root = loader.load(new FileInputStream("src/application/SignUpView.fxml"));
