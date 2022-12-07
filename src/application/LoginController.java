@@ -77,7 +77,7 @@ public class LoginController{
     				accountController.initialize_screen();
 
     				applicationStage = (Stage)((Node)event.getSource()).getScene().getWindow();
-    				Scene AccountScene = new Scene(root, 350, 500);
+    				Scene AccountScene = new Scene(root, 450, 500);
     				applicationStage.setScene(AccountScene);
     				applicationStage.setTitle("Banking Application - Account");
     				
