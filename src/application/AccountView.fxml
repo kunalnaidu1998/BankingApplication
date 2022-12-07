@@ -71,9 +71,9 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </VBox.margin>
       </VBox>
-      <HBox prefHeight="100.0" prefWidth="200.0">
+      <HBox minHeight="-Infinity" minWidth="-Infinity">
          <children>
-            <SplitMenuButton mnemonicParsing="false" text="SplitMenuButton">
+            <SplitMenuButton mnemonicParsing="false" text="Transaction Menu">
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#withdrawMenuItem" text="Withdraw" />
                 <MenuItem mnemonicParsing="false" onAction="#DepositMenuItem" text="Deposit" />
@@ -88,5 +88,6 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </VBox.margin>
       </HBox>
+      <VBox fx:id="transactionVBox" prefHeight="200.0" prefWidth="100.0" />
    </children>
 </VBox>

@@ -9,22 +9,22 @@ public class Client {
 	private String password = "";
 	
 	private SavingsAccount savingsAccount;
-	private CheckingAccount checkingAccounts;
+	private CheckingAccount checkingAccount;
 
 	/**
 	 * gets a copy of checking account
 	 * @return instance of checking account
 	 */
-	public CheckingAccount getCheckingAccounts() {
-		return new CheckingAccount(checkingAccounts);
+	public CheckingAccount getCheckingAccount() {
+		return new CheckingAccount(checkingAccount);
 	}
 	
 	/**
 	 * set checking account
 	 * @param checkingAccounts
 	 */
-	public void setCheckingAccounts(CheckingAccount checkingAccounts) {
-		this.checkingAccounts = new CheckingAccount(checkingAccounts);
+	public void setCheckingAccount(CheckingAccount newCheckingAccount) {
+		this.checkingAccount = new CheckingAccount(newCheckingAccount);
 	}
 	/**
 	 * gets instance of savings acccount
@@ -114,7 +114,7 @@ public class Client {
 		setPassword(password);
 
 		// create checking and savings account account
-		setCheckingAccounts(new CheckingAccount(0.0));
+		setCheckingAccount(new CheckingAccount(0.0));
 		setSavingsAccount(new SavingsAccount(0.0));
 		
 	}
@@ -126,8 +126,31 @@ public class Client {
 		setPassword(toCopy.getPassword());
 
 		// create checking and savings account account
-		setCheckingAccounts(toCopy.getCheckingAccounts());
+		setCheckingAccount(toCopy.getCheckingAccount());
 		setSavingsAccount(toCopy.getSavingsAccount());
+	}
+	
+	public void depositCheckingAccount(Double amount) {
+		CheckingAccount account = getCheckingAccount();
+		account.deposit(amount);
+		setCheckingAccount(account);
+	}
+	
+	public void withdrawCheckingAccount(Double amount) throws InvalidBalanceException {
+		CheckingAccount account = getCheckingAccount();
+		account.withdraw(amount);
+		setCheckingAccount(account);
+	}
+	public void depositSavingsAccount(Double amount) {
+		SavingsAccount account = getSavingsAccount();
+		account.deposit(amount);
+		setSavingsAccount(account);
+	}
+	
+	public void withdrawSavingsAccount(Double amount) throws InvalidBalanceException {
+		SavingsAccount account = getSavingsAccount();
+		account.withdraw(amount);
+		setSavingsAccount(account);
 	}
 
 }

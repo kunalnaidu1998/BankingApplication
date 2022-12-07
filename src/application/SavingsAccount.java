@@ -28,9 +28,10 @@ public class SavingsAccount extends BankAccount {
 	 */
 	public boolean allowedWithdraw(Double money) throws InvalidBalanceException {
 		if (getBalance() - getMinimumBalance() >= money) {
-			throw new InvalidBalanceException();
-		} else {
 			return true;
+			
+		} else {
+			throw new InvalidBalanceException();
 		}
 	}
 }

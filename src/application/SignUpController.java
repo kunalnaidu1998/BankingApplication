@@ -64,7 +64,7 @@ public class SignUpController{
     			LoginController.setClientData(getClientData());
 
     			applicationStage = (Stage)((Node)event.getSource()).getScene().getWindow();
-    			Scene LoginScene = new Scene(root, 400, 400);
+    			Scene LoginScene = new Scene(root, 400, 250);
     			applicationStage.setScene(LoginScene);
     			applicationStage.setTitle("Banking Application - Login");
     			

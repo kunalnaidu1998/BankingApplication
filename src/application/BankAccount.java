@@ -20,21 +20,18 @@ public class BankAccount {
 		balance += money;
 	}
 
-	public void withdraw(Double money) {
-		try {
-			if (allowedWithdraw(money)) {
-				balance -= money;
-			}		
-		} catch (InvalidBalanceException ibe) {
-		
-		}	
+	public void withdraw(Double money) throws InvalidBalanceException {
+		if (allowedWithdraw(money)) {
+			balance -= money;
+		}		
 	}
 
 	public boolean allowedWithdraw(Double money) throws InvalidBalanceException {
 		if (getBalance() >= money) {
-			throw new InvalidBalanceException();
-		} else {
 			return true;
+			
+		} else {
+			throw new InvalidBalanceException();
 		}
 	}
 

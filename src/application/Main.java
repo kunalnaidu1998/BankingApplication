@@ -17,7 +17,7 @@ public class Main extends Application {
 			VBox root = loader.load(new FileInputStream("src/application/LoginView.fxml"));
 			LoginController controller = (LoginController)loader.getController();
 			controller.applicationStage = primaryStage;
-			Scene scene = new Scene(root,400,400);
+			Scene scene = new Scene(root,400,250);
 			
 
 			primaryStage.setScene(scene);

@@ -77,7 +77,7 @@ public class LoginController{
     				accountController.initialize_screen();
 
     				applicationStage = (Stage)((Node)event.getSource()).getScene().getWindow();
-    				Scene AccountScene = new Scene(root, 400, 400);
+    				Scene AccountScene = new Scene(root, 350, 500);
     				applicationStage.setScene(AccountScene);
     				applicationStage.setTitle("Banking Application - Account");
     				
@@ -115,7 +115,7 @@ public class LoginController{
 			signUpController.setClientData(getClientData());
 
 			applicationStage = (Stage)((Node)event.getSource()).getScene().getWindow();
-			Scene signUpScene = new Scene(root, 400, 400);
+			Scene signUpScene = new Scene(root, 300, 300);
 			applicationStage.setScene(signUpScene);
 			applicationStage.setTitle("Banking Application - SignUp");
 			
