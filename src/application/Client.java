@@ -143,8 +143,9 @@ public class Client {
 	/**
 	 * deposits amount to clients checking account
 	 * @param amount : amount to deposit
+	 * @throws InvalidAmountException  : makes sure amount is positive
 	 */
-	public void depositCheckingAccount(Double amount) {
+	public void depositCheckingAccount(Double amount) throws InvalidAmountException {
 		CheckingAccount account = getCheckingAccount();
 		account.deposit(amount);
 		setCheckingAccount(account);
@@ -154,8 +155,9 @@ public class Client {
 	 * withdraws money from clients checking account
 	 * @param amount : amount of money to be withdrawn
 	 * @throws InvalidBalanceException : makes sure balance is valid after withdraw
+	 * @throws InvalidAmountException : makes sure amount is positive
 	 */
-	public void withdrawCheckingAccount(Double amount) throws InvalidBalanceException {
+	public void withdrawCheckingAccount(Double amount) throws InvalidBalanceException, InvalidAmountException {
 		CheckingAccount account = getCheckingAccount();
 		account.withdraw(amount);
 		setCheckingAccount(account);
@@ -164,8 +166,9 @@ public class Client {
 	/**
 	 * deposits money to clients savings account
 	 * @param amount : amount of money to be deposited
+	 * @throws InvalidAmountException  : makes sure amount positive
 	 */
-	public void depositSavingsAccount(Double amount) {
+	public void depositSavingsAccount(Double amount) throws InvalidAmountException {
 		SavingsAccount account = getSavingsAccount();
 		account.deposit(amount);
 		setSavingsAccount(account);
@@ -175,8 +178,9 @@ public class Client {
 	 * withdraws money from clients saving account
 	 * @param amount : amount of money to be withdrawn
 	 * @throws InvalidBalanceException : makes sure balance is valid after withdraw
+	 * @throws InvalidAmountException : makes sure amount is positive
 	 */
-	public void withdrawSavingsAccount(Double amount) throws InvalidBalanceException {
+	public void withdrawSavingsAccount(Double amount) throws InvalidBalanceException, InvalidAmountException {
 		SavingsAccount account = getSavingsAccount();
 		account.withdraw(amount);
 		setSavingsAccount(account);

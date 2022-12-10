@@ -30,19 +30,31 @@ public class BankAccount {
 	/**
 	 * adds money to balance
 	 * @param money: value to be added to balance
+	 * @throws InvalidAmountException makes sure amount is positive
 	 */
-	public void deposit(Double money) {
-		balance += money;
+	public void deposit(Double money) throws InvalidAmountException {
+		if (money >= 0) {
+			balance += money;
+		} else {
+			throw new InvalidAmountException();
+		}
+		
 	}
 
 	/**
 	 * withdraws money from balance
 	 * @param money : amount of money to be reduced from account 
 	 * @throws InvalidBalanceException : makes sure that balance is valid
+	 * @throws InvalidAmountException : makes sure that amount is not negative
 	 */
-	public void withdraw(Double money) throws InvalidBalanceException {
+	public void withdraw(Double money) throws InvalidBalanceException, InvalidAmountException {
 		if (allowedWithdraw(money)) {
-			balance -= money;
+			if (money >= 0) {
+				throw new InvalidAmountException();
+			} else {
+				balance -= money;
+			}
+			
 		}		
 	}
 

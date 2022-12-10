@@ -102,6 +102,9 @@ public class AccountController {
 			} catch (InvalidBalanceException e) {
 				invalidWithdrawLabel.setText("Insuffient Funds");
 				e.printStackTrace();
+			} catch (InvalidAmountException e) {
+				invalidWithdrawLabel.setText("Please Enter Positive Amount");
+				e.printStackTrace();
 			}
 		});
 	
@@ -170,6 +173,9 @@ public class AccountController {
 				invalidDepositLabel.setText("Please Enter Amount");
 				e.printStackTrace();
 			} catch (InvalidBalanceException e) {
+				e.printStackTrace();
+			} catch (InvalidAmountException e) {
+				invalidDepositLabel.setText("Please Enter Positive Amount");
 				e.printStackTrace();
 			}
 		});
@@ -246,6 +252,9 @@ public class AccountController {
 			} catch (InvalidBalanceException e) {
 				transferErrorLabel.setText("Insufficient Funds");
 				e.printStackTrace();
+			} catch (InvalidAmountException e) {
+				transferErrorLabel.setText("Please Enter Positive Amount");
+				e.printStackTrace();
 			}
 		});
 
@@ -261,8 +270,9 @@ public class AccountController {
      * @throws NumberFormatException : makes sure format of number is correct
      * @throws NullPointerException : makes sure input isnt empty
      * @throws InvalidBalanceException : makes sure balance are valid
+     * @throws InvalidAmountException  : makes sure amount is positive
      */
-    public void transferAction(String fromAccount, String toAccount, String amount) throws NumberFormatException, NullPointerException, InvalidBalanceException {
+    public void transferAction(String fromAccount, String toAccount, String amount) throws NumberFormatException, NullPointerException, InvalidBalanceException, InvalidAmountException {
     	
     	// transfer from checking account to savings account
     	if (fromAccount.equals("Checking Account")) {
@@ -340,8 +350,9 @@ public class AccountController {
 	 * @throws NullPointerException : makes sure empty string isnt inputted
 	 * @throws NumberFormatException : makes sure that the number is formatted correctly
 	 * @throws InvalidBalanceException : makes sure that balance is valid
+	 * @throws InvalidAmountException : makes sure amount is positive
 	 */
-    public void withdrawDepositAction(String transactionType, String account, String amount) throws NullPointerException, NumberFormatException, InvalidBalanceException {
+    public void withdrawDepositAction(String transactionType, String account, String amount) throws NullPointerException, NumberFormatException, InvalidBalanceException, InvalidAmountException {
     	// check if value is correct input
     	
     	Double doubleAmount = Double.parseDouble(amount);
